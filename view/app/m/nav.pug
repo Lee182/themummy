@@ -1,0 +1,22 @@
+nav.nav.flex-row(:class='{hide: !nav.show}')
+  .nav-item
+    .nav-item__inner.flex-row
+      .percent.flex-center
+        .percent-n.file-count.flex-center {{ nav.links.length }}
+      div files
+  // for informational pages
+  .nav-item(
+    v-for='item in nav.links',
+    :class=`{active: item.scriptId === coverage.scriptId}`
+    v-show='item.hide !== true'
+    @click='nav__click(item)'
+  )
+    .nav-item__inner.flex-row
+      .percent.flex-center
+        .percent-n.flex-center(
+          :style=`{'background': percent_to_color(item.percent)}`
+        ) {{ coverage_percent(item) }}
+      .filename {{ item.text }}
+
+button.nav-toggle.flex-center(@click='nav__tog')
+  icon-menu

@@ -1,0 +1,14 @@
+#codemirror
+
+.coverage-wrap(
+  v-if='coverage.active && coverage.scriptId && coverage.scripts[coverage.scriptId] !== undefined'
+)
+  .line(
+    v-for='(line, iline) of coverage.scripts[coverage.scriptId].aoLine',
+    :key='iline')
+    .line-number(:id='"line_"+iline')
+      span(v-if='line.iLineoffset === 0') {{ line.iNewLineOffset + 1 }}
+    span.sline.no(v-if=`typeof line.text === "string"`) {{line.text}} 
+    span(v-else v-for=`text in line.text`)
+      span.sline.no(v-if=`typeof text === "string"`) {{ text }}
+      span.sline.yes(v-else :data-c=`text.oTo.count`) {{ text.sText }} 

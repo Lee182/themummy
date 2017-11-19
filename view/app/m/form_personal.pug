@@ -1,0 +1,117 @@
+pd-form
+//-
+  .f-section-0(
+    v-if='section.section_id'
+    v-for='section in form_structure',
+    :id='section.section_id')
+    .f-heading-0: h2 {{ section.heading }}
+    .f-input(
+      v-for='input in section.inputs',
+      v-if='input.id'
+      v-show='input.hidden === undefined || input.hidden === false')
+      label.label(v-if='input.label', :for='input.id') {{input.label}}:
+      input.input(v-if='input.tag !== "textarea"', :id='input.id', :placeholder='input.placeholder || input.label', value='', type='text')
+      textarea.input(v-if='input.tag === "textarea"', :id='input.id', :placeholder='input.placeholder || input.label', value='', type='text')
+
+//-
+  #personal-details.f-section-0
+    .f-heading-0
+      h2 Personal Details
+    #f-name.f-input
+      label.label(for='name') Name:
+      input#name.input(placeholder='John Doe', value='', type='text')
+      .validation-errors
+    #f-summary.f-input
+      label.label(for='summary') Summary:
+      textarea#summary.input(placeholder='Summary', type='text')
+      .validation-errors
+    #f-birthday.f-input
+      label.label(for='birthday') Birthday:
+      input#birthday.input(placeholder='YYYY-MM-DD', value='', type='date')
+      .validation-errors
+  #contact-info.f-section-0
+    .f-heading-0
+      h2 Contact Info
+    div
+      .f-input(id='f-phones.0')
+        label.label(for='phones.0') Phone:
+        input.input(id='phones.0', placeholder='Phone Number', value='', type='text')
+        .validation-errors
+      button.btn-append Add Phone
+    div
+      .f-input(id='f-emails.0')
+        label.label(for='emails.0') E-mail address:
+        input.input(id='emails.0', placeholder='E-mail address', value='', type='text')
+        .validation-errors
+      button.btn-append Add E-mail address
+    #address.f-section-1
+      .f-heading-1
+        h2 Address
+      .f-input(id='f-address.housenumber')
+        label.label(for='address.housenumber') House Number:
+        input.input(id='address.housenumber', placeholder='House Number', value='', type='number')
+        .validation-errors
+      .f-input(id='f-address.street')
+        label.label(for='address.street') Street:
+        input.input(id='address.street', placeholder='Street', value='', type='text')
+        .validation-errors
+      .f-input(id='f-address.city')
+        label.label(for='address.city') City:
+        input.input(id='address.city', placeholder='City', value='', type='text')
+        .validation-errors
+      .f-input(id='f-address.country')
+        label.label(for='address.country') Country:
+        input.input(id='address.country', placeholder='Country', value='', type='text')
+        .validation-errors
+      .f-input(id='f-address.post_code')
+        label.label(for='address.post_code') Post Code:
+        input.input(id='address.post_code', placeholder='Post Code', value='', type='text')
+        .validation-errors
+  #job-history.f-section-0
+    .f-heading-0
+      h2 Job History
+    #job-history-0.f-section-1
+      .f-heading-1
+        h2 Experience 1
+      .f-input(id='f-jobs.0.title')
+        label.label(for='jobs.0.title') Job Title:
+        input.input(id='jobs.0.title', placeholder='Job Title', value='', type='text')
+        .validation-errors
+      .f-input(id='f-jobs.0.employer')
+        label.label(for='jobs.0.employer') Employer:
+        input.input(id='jobs.0.employer', placeholder='Employer/Organisation', value='', type='text')
+        .validation-errors
+      .f-input(id='f-jobs.0.summary')
+        label.label(for='jobs.0.summary') Summary:
+        textarea.input(id='jobs.0.summary', placeholder='Summary', type='text')
+        .validation-errors
+      .f-input(id='f-jobs.0.date_start')
+        label.label(for='jobs.0.date_start') Date Start:
+        input.input(id='jobs.0.date_start', placeholder='YYYY-MM-DD', value='', type='month')
+        .validation-errors
+      .f-input(id='f-jobs.0.date_end')
+        label.label(for='jobs.0.date_end') Date Finish:
+        input.input(id='jobs.0.date_end', placeholder='YYYY-MM-DD', value='', type='month')
+        .validation-errors
+    button.btn-append Add Experience
+  #allergies.f-section-0
+    .f-heading-0
+      h2 Allergies
+    div
+      .f-input(id='f-allergies.0')
+        input.input.input-remove(id='allergies.0', placeholder='Allergy eg. Nuts, Lactose, Gluten', value='', type='text')
+        button.btn-x x
+        .validation-errors
+      button.btn-append Add Allergy
+  #clinical-notes.f-section-0
+    .f-heading-0
+      h2 Clinical Notes
+    #clinical-notes-0.f-section-1
+      .f-heading-1
+        h2 Note 1
+      .f-input(id='f-clinical_notes.0.note')
+        textarea.input(id='clinical_notes.0.note', placeholder='Notes', type='text')
+        .validation-errors
+    button.btn-append Add Note
+  .f-submit.flex-center
+    button.btn-submit Submit

@@ -1,0 +1,89 @@
+@require 'lib/jonoreset.styl'
+
+$c_pred = #ce3333
+$c_ds = #d8cbc7
+$c_black = #260c1a
+$c_metal = #6e7e85
+$c_blue = #b7cece
+$c_white = #fef9f9
+$c_f_l = #f4c0c0
+$c_m_l = #b8dceb
+$c_f_d = hsl(0, 40%, 38%)
+$c_m_d = hsl(211, 55%, 20%)
+
+$c_blue_light = #d4d4ff
+$c_pink_light = #ffb7c4
+$c_dark_card = #2c2c2c
+
+$c_bg = #f5deb3
+
+.flex-center
+  display flex
+  justify-content center
+  align-items center
+.flex-row
+  display flex
+  flex-flow row wrap
+.flex-gap
+  flex 1
+.flex-aic
+  align-items center
+.template
+  display none !important
+
+.ellipsis
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+
+remi(value)
+  u = unit(value)
+  if (u is 'px')
+    return unit(value/16, 'rem');
+  return unit(value, u);
+
+linebg(c1, c2, n)
+  $twopx = remi(1px)
+  $height = n * 2
+  background-image linear-gradient(
+    180deg,
+    c2,
+    c2 $twopx,
+    c1 $twopx,
+    c1 $height)
+  // background-image: linear-gradient(180deg, #cbcbcb, #cbcbcb 0.0625rem, #fff 0.0625rem, #fff 1.8rem);
+  background-repeat repeat
+  background-position unset
+  background-size $height $height
+
+body
+  color black
+  font-family 'ubuntu mono'
+  linebg(white, #cbcbcb, .9rem)
+
+shadow()
+  box-shadow 0 0 0 1px rgba(0,0,0,.1),0 2px 3px rgba(0,0,0,.2)
+
+btn(c1 = transparent, c2, n = .95)
+  transition all .25s ease
+  background-color c1
+  &:hover
+  &:focus
+    background-color c2
+  &:active
+    transform scale(n)
+  border-radius .5rem
+
+borderc(c1, c2, c3, bool)
+  transition border-color .2s ease
+  if bool
+    border-bottom 2px solid c1
+  &:hover
+    border-color c2
+  &.active
+  &:active
+  &:focus
+    border-color c3
+
+@require './m/*'
+@require './lib/flags.styl'

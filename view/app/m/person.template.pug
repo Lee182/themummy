@@ -1,0 +1,16 @@
+.person(
+  :class=`{m: person.sex === 'male', f: person.sex === 'female'}`
+)
+  icon-male(v-show='person.sex === "male"')
+  icon-female(v-show='person.sex === "female"')
+  .txt
+    .name.ellipsis {{person.nickname}}
+    .detail
+      .age 
+        span.field age:
+        span.val {{person.age}}
+      .loci(v-if='person.loci.city')
+        span.field loci:
+        span.val.ellipsis {{ person.loci.country_code }} - {{ person.loci.city }}
+  .flex-gap
+  .f32.flag(v-if='person.loci.city', :class='getFlag(person.loci)')

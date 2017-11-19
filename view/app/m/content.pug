@@ -1,0 +1,62 @@
+#app(v-cloak)
+  include nav.pug
+  .main(:class=`{
+    nav_show: nav.show, 
+    'atroot-in-onlinemode': user && router.path === '/'}`)
+    .stage#coverage
+      include coverage.pug
+    .stage#login(v-show='!user')
+      //- include login.pug
+    .stage#main(v-show=`user && router.path === '/'`)
+      include coverage.pug
+      //- include people.pug
+      //- include inbox.pug
+      //- include chat.pug
+    //- button.navstage.left.flex-center(
+    //-   v-show=`user && router.path === '/'`,
+    //-   @click='nav__stage({forward: -1})',
+    //-   :class='{disabled: stage_atmin, hide: stage_seeall}'
+    //- )
+    //-   icon-arrow-left
+    //- button.navstage.right.flex-center(
+    //-   v-show=`user && router.path === '/'`,
+    //-   @click='nav__stage({forward: 1})',
+    //-   :class='{disabled: stage_atmax, hide: stage_seeall}'
+    //- )
+    //-   icon-arrow-right
+
+.template#td-greeting
+  h1 {{ message }}
+
+.template#pd-form
+  .f-sections
+    h1 Personal Details Form
+    pd-form-section(v-for='section in form_structure', :section='section')
+    .f-submit.flex-center
+      btn.btn-submit {{submit_btn_txt}}
+
+.template#pd-form-section
+  div(:class='fclass')
+    div(:class='hclass')
+      h2 {{section.heading}}
+    pd-builder(v-for='input in section.inputs', :input='input', :depth='depth')
+
+.template#pd-builder
+  pd-form-section(v-if='input.heading', :section='input', :depth='depth')
+  
+  pd-input(v-else-if='input.hidden !== true', :input='input')
+
+.template#pd-input
+  .f-input(:id='input.id')
+    label.label(v-if='input.label', :for='input.id')
+      | {{input.label}}:
+    textarea.input(v-if=`input.tag === 'textarea'`,
+      :id='input.id', :placeholder='input.placeholder', value='', type='text')
+    input.input(
+      v-if=`input.tag === 'input'`,
+      :id='input.id', :placeholder='input.placeholder', value='', type='text')
+    .validation-errors
+
+.template#person
+  include person.template.pug
+include icons.pug

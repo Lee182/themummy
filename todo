@@ -1,0 +1,21 @@
++ mkdir view-snaps
++ within view-snaps setup a vue.js project
+  + covert line numbers into offset ranges
+  + display code with line numbers gutter and code
+  + side panel with file names
+  - side panel with actions
+  - options to view single coverage snap or multi
+  - percentage coverage within side panel
+
++ get coverage snaps
++ a single snap refs many files
+- a single file refs many snaps
+- a single file snaps can be reduced togeather producing an aggregate report
+- a aggregate report can be displayed to the user
+- a single file should produce a percentage of coverage
+
+- ui
+  - action panel at top of the page
+  - can filter files by names
+    - can quickly toggle fuzzy or exact search
+  - can filter actions by names

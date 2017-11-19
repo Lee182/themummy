@@ -1,0 +1,60 @@
+@require 'codemirror-5.31.0/lib/codemirror'
+@require 'codemirror-5.31.0/theme/3024-day'
+@require 'codemirror-5.31.0/addon/fold/foldgutter'
+.CodeMirror
+  font-family ubuntu mono
+  font-size .9rem
+  background unset
+  pre
+    linebg(white, #cbcbcb, .9rem)
+    line-height 1.8rem
+  &-linenumber
+    font-size .7rem
+    top: 0.45rem
+  &-lines
+    padding 0
+  .david
+    opacity 1
+    // background #e5ffe5
+    padding .5rem 0
+    margin -.5rem 0
+  .goliath
+    opacity .3
+    // background #ffe5e5
+    padding 0.5rem 0
+    margin -0.5rem 0
+  // cm.markText({line: 0, ch:0}, {line: 7, ch:3}, {className: 'david'})
+  .cm-s-default .cm-comment
+    color: #b1b1b1;
+    font-style: italic;
+
+.line
+  display flex
+  height 1.8rem
+  line-height 1.8rem
+.line-number
+  font-size .8rem
+  width 3rem
+  text-align right
+  padding-right .5rem
+  user-select none // prevent copying
+.line-src
+  font-size .9rem
+  height 0.9rem
+  word-break break-all
+  white-space pre
+  font-family ubuntu mono
+  max-width calc(100% - 3rem)
+$green = #036b03
+$red = #9a0000
+
+
+.sline
+  white-space: pre
+  height: 1.8rem
+  font-size: .9rem
+
+.yes
+  background lighten($green, 60)
+.no
+  background lighten($red, 60)

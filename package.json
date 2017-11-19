@@ -1,0 +1,59 @@
+{
+  "name": "themummy",
+  "version": "0.0.2",
+  "description": "UNSTABLE. codecoverage married with integration testing. currently a work in progress",
+  "keywords": [
+    "codecoverage",
+    "chrome-remote-interface",
+    "integration-testing"
+  ],
+  "license": "MIT",
+  "author": "Jonathan T L Lee",
+  "main": "test.js",
+  "scripts": {
+    "coverage": "node test_runner.js",
+    "coverage__debug": "node --inspect-brk=10002 test_runner.js",
+    "view__build": "npm-run-all --parallel view_pug view_css view_js",
+    "view__dev": "npm-run-all --parallel view_pug__watch view_css__watch view_js__watch view_start__watch",
+    "view_css": "stylus ./app/*.styl -o ./dist/",
+    "view_css__watch": "stylus --sourcemap-inline -w ./view/app/*.styl -o ./view/dist/",
+    "view_js": "browserify --debug ./view/app/index.js -o ./view/dist/bundle.js",
+    "view_js__watch": "watchify --debug ./view/app/index.js -o ./view/dist/bundle.js",
+    "view_pug": "pnpx pug -P ./view/app/index.pug -o ./view/dist/",
+    "view_pug__watch": "pnpx pug -w ./view/app/index.pug -o ./view/dist/",
+    "view_start": "node view/server/index.js",
+    "view_start__debug": "node --inspect-brk=10003 server/index.js",
+    "view_start__watch": "nodemon ./view/server/index.js -w ./server"
+  },
+  "dependencies": {
+    "binary-search": "^1.3.2",
+    "body-parser": "^1.16.0",
+    "chrome-launcher": "^0.8.0",
+    "chrome-remote-interface": "^0.25.2",
+    "express": "^4.14.0",
+    "fs-extra": "^4.0.1",
+    "kolorwheel": "^0.2.1",
+    "lodash": "^4.17.4",
+    "prismjs": "^1.8.3",
+    "vue": "^2.5.2"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.1",
+    "coffeeify": "^3.0.0",
+    "cypress": "^1.0.2",
+    "eslint": "^4.7.2",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
+    "pug": "^2.0.0-beta6",
+    "pug-cli": "^1.0.0-alpha6",
+    "standard": "^10.0.3",
+    "stylus": "^0.54.5",
+    "unique-selector": "^0.3.6",
+    "watchify": "^3.7.0"
+  }
+}
